@@ -9,7 +9,6 @@ driver = webdriver.Chrome(PATH)
 
 driver.get("https://www.ssdcl.com.sg/User/Login")
 
-
 ssdc_user = driver.find_element_by_id('UserName')
 ssdc_user.send_keys(os.environ.get('ssdc_user'))
 
@@ -32,7 +31,6 @@ availability_button = driver.find_element_by_id('btn_checkforava').click()
 time.sleep(2)
 
 buyButton = False
-
 while not buyButton:
     try:
         cartout = driver.find_element_by_class_name('slotBooking')
