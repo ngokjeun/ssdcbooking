@@ -3,6 +3,7 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from pynotifier import Notification
 import time
 import os
+import requests
 
 PATH = r"C:\Users\ngokj\Desktop\ssdc2\chromedriver.exe"
 driver = webdriver.Chrome(PATH)
@@ -39,10 +40,11 @@ while not buyButton:
         Notification(
             title='ssdc slot found',
             description='hurry pay',
-            duration= 20,
+            duration= 30,
             urgency=Notification.URGENCY_CRITICAL
         ).send()
-        time.sleep(90)
+        requests.get('https://maker.ifttt.com/trigger/clicked/with/key/ddg9gyPPaIJ-1sJWzMpsI_')
+        time.sleep(60)
 
     except (NoSuchElementException) as e:
         print('no slots:(')
