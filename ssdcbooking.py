@@ -11,19 +11,19 @@ booking_date = "24/4/21"
 PATH = r"C:\Users\ngokj\Desktop\ssdc2\chromedriver.exe"
 driver = webdriver.Chrome(PATH)
 
-def navig():
+def navi():
     driver.get("https://www.ssdcl.com.sg/User/Login")
     ssdc_user = driver.find_element_by_id('UserName')
     ssdc_user.send_keys(os.environ.get('ssdc_user'))
     ssdc_password = driver.find_element_by_id('Password')
     ssdc_password.send_keys(os.environ.get('ssdc_password'))
-    driver.find_element_by_xpath('/html/body/div[4]/div/div/div/div[2]/div/div/form/div[5]/div/button').click() #login 
-    print('logged in')
-    driver.find_element_by_xpath('/html/body/div[4]/div/div/div/div[2]/ul/li[3]/a').click() #booking 
-    driver.find_element_by_id('btnNewBooking').click() #new booking
-    driver.find_element_by_id('chkProceed').click() #check proceed
-    driver.find_element_by_id('lnkProceed').click() #proceed
-    driver.find_element_by_id('btn_checkforava').click() #availability
+    login_button = driver.find_element_by_xpath('/html/body/div[4]/div/div/div/div[2]/div/div/form/div[5]/div/button').click()
+    print("LOGGED IN")
+    booking_button = driver.find_element_by_xpath('/html/body/div[4]/div/div/div/div[2]/ul/li[3]/a').click()
+    newbooking_button = driver.find_element_by_id('btnNewBooking').click()
+    checkproceed_button = driver.find_element_by_id('chkProceed').click()
+    proceed_button = driver.find_element_by_id('lnkProceed').click()
+    availability_button = driver.find_element_by_id('btn_checkforava').click()
     time.sleep(2)
 
 def clickslot():
@@ -34,7 +34,7 @@ def clickslot():
             #cartout = driver.find_element_by_class_name('slotBooking')
         #book specific date
             cartout = driver.find_element_by_xpath('//a[@class="slotBooking"][contains(@id, booking_date)]')
-            print('clicked, pay now')
+            print("clicked hurry")
             cartout.click()
             Notification(
                 title='ssdc slot found',
@@ -52,7 +52,7 @@ def clickslot():
             time.sleep(60)
 
 def main():
-    navig()
+    navi()
     clickslot()
 
 main()
